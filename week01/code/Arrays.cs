@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 public static class Arrays
 {
     /// <summary>
@@ -12,8 +14,17 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        // S1: Create the array 
+            double[] result = new double[length];
 
-        return []; // replace this return statement with your own
+        // S2: Loop through each part in the array
+            for (int i = 0; i < length; i++)
+        
+        // S3: Calculate multiple 
+            { result[i] = number * (i + 1);}
+
+        // S4: Return
+        return result; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +40,17 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        //S1: Loop n times
+        for (int i = 0; i < amount; i++)
+        {
+            //S1:Save last number
+            int lastValue = data[data.Count - 1];
+            //S3: Remove last number 
+            data.RemoveAt(data.Count - 1);
+            //S4: Insert last number in the position 1 (0)
+            data.Insert(0, lastValue);
+        }
+
+
     }
 }

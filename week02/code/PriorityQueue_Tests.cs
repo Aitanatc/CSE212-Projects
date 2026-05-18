@@ -18,7 +18,7 @@ public class PriorityQueueTests
         priorityQueue.Enqueue("B", 2);
         priorityQueue.Enqueue("C", 3);
 
-        // Enqueue{} expectedresult = "C" remoed, priority A1, priority B2
+        // Enqueue{} expectedresult = "C" removed, priority A1, priority B2
         var result = priorityQueue.Dequeue();
         Assert.AreEqual("[A (Pri:1), B (Pri:2)]", priorityQueue.ToString());
 
@@ -27,10 +27,12 @@ public class PriorityQueueTests
     }
 
     [TestMethod]
-    // Scenario: if more than one item has the highest priority, the one lcoses to the front needs to be removed
+    // Scenario: if more than one item has the highest priority, the one closes to the front needs to be removed
     //create a queue with priorities like this: (A, 1), (B, 2), (C, 3), (D, 3). Dequeue once and check the value returned and the state of the queue after.
-    // Expected Result: c3, removed and returned. values left: a1, b2, d3
-    // Defect(s) Found: needed to remove the >= because we needed to keep only the first or closer priority to the fornt or start of the queue.
+    // Expected Result: 
+        // - Returned value: "C"
+        // - Remaining queue: A(1), B(2), D(3)
+    // Defect(s) Found: The comparison operator used >= instead of >,  causing the last highest-priority item to be removed instead of the first one.
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
@@ -48,10 +50,15 @@ public class PriorityQueueTests
 
     // Add more test cases as needed below.
     [TestMethod]
-    public void testemptypriorityqueue()
+    // Scenario: Try to dequeue from an empty queue.
+    // Expected Result:
+    // - An InvalidOperationException is thrown
+    // - Exception message is "The queue is empty."
+    public void TestEmptyPriorityQueue()
     {
         var priorityQueue = new PriorityQueue();
         // priorityQueue.Enqueue();
-        Assert.ThrowsException<InvalidOperationException>(() => priorityQueue.Dequeue());
+        var exception = Assert.ThrowsException<InvalidOperationException>(() => priorityQueue.Dequeue());
+        Assert.AreEqual("The queue is empty.", exception.Message);
     }
 }

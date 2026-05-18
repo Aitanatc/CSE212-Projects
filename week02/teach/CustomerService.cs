@@ -11,24 +11,36 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: add someone and serve them 
+        // Expected Result: display the added someone
         Console.WriteLine("Test 1");
+        var cs = new CustomerService(1);
+        cs.AddNewCustomer();
+        cs.ServeCustomer();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: the deletion happened before the enqueue
 
         Console.WriteLine("=================");
 
-        // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // // Test 2
+        // // Scenario: add 3 people and show them in order 
+        // // Expected Result: print users in the order they were added
         Console.WriteLine("Test 2");
+        cs = new CustomerService(4);
+        cs.AddNewCustomer();
+        cs.AddNewCustomer();
+        cs.AddNewCustomer();
+        Console.WriteLine($"Before serving customers: {cs}");
+        cs.ServeCustomer();
+        cs.ServeCustomer();
+        cs.ServeCustomer();
+        Console.WriteLine($"After serving customers: {cs}");
 
-        // Defect(s) Found: 
+        // // Defect(s) Found: 
 
-        Console.WriteLine("=================");
+        // Console.WriteLine("=================");
 
-        // Add more Test Cases As Needed Below
+        // // Add more Test Cases As Needed Below
     }
 
     private readonly List<Customer> _queue = new();
@@ -88,8 +100,9 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
+        var customer = _queue[0]; //changed this to be first bc it has to be the first one in the queue, not the last one
         _queue.RemoveAt(0);
-        var customer = _queue[0];
+        
         Console.WriteLine(customer);
     }
 

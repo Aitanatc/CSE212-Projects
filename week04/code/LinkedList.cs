@@ -57,6 +57,7 @@ public class LinkedList : IEnumerable<int>
         // to null resulting in an empty list.  This condition will also
         // cover an empty list.  Its okay to set to null again.
         if (_head == _tail)
+        // if (LinkedList.count() <= 1)
         {
             _head = null;
             _tail = null;
